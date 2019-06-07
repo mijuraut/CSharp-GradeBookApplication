@@ -41,16 +41,16 @@ namespace GradeBook.UserInterfaces
             }
             var name = parts[1];
 			var type = parts[2].ToLower();
-			bool isWeighted;
-			Boolean.TryParse(parts[3], out isWeighted);
+			var weighted = bool.Parse(parts[3]);
+
 			BaseGradeBook gradeBook;
 			if (type == "standard")
 			{
-				gradeBook = new StandardGradeBook(name, isWeighted);
+				gradeBook = new StandardGradeBook(name, weighted);
 			}
 			else if (type == "ranked")
 			{
-				gradeBook = new RankedGradeBook(name, isWeighted);
+				gradeBook = new RankedGradeBook(name, weighted);
 			}
 			else
 			{

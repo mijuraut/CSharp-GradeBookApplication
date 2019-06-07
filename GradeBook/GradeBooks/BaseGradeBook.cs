@@ -108,9 +108,9 @@ namespace GradeBook.GradeBooks
             }
         }
 
-        public virtual double GetGPA(char letterGrade, StudentType studentType, bool IsWeighted)
+        public virtual double GetGPA(char letterGrade, StudentType studentType)
         {
-			int addOneMaybe = IsWeighted && (studentType.Equals("Honors") || studentType.Equals("DualEnrolled")) ? 1 : 0;
+			int addOneMaybe = IsWeighted && (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled) ? 1 : 0;
 				switch (letterGrade)
             {
                 case 'A':
@@ -141,7 +141,7 @@ namespace GradeBook.GradeBooks
             foreach (var student in Students)
             {
                 student.LetterGrade = GetLetterGrade(student.AverageGrade);
-                student.GPA = GetGPA(student.LetterGrade, student.Type, IsWeighted);
+                student.GPA = GetGPA(student.LetterGrade, student.Type);
 
                 Console.WriteLine("{0} ({1}:{2}) GPA: {3}.", student.Name, student.LetterGrade, student.AverageGrade, student.GPA);
                 allStudentsPoints += student.AverageGrade;
@@ -198,7 +198,7 @@ namespace GradeBook.GradeBooks
         {
             var student = Students.FirstOrDefault(e => e.Name == name);
             student.LetterGrade = GetLetterGrade(student.AverageGrade);
-            student.GPA = GetGPA(student.LetterGrade, student.Type, IsWeighted);
+            student.GPA = GetGPA(student.LetterGrade, student.Type);
 
             Console.WriteLine("{0} ({1}:{2}) GPA: {3}.", student.Name, student.LetterGrade, student.AverageGrade, student.GPA);
             Console.WriteLine();

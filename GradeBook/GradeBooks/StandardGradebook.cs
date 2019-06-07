@@ -8,5 +8,6 @@ namespace GradeBook.GradeBooks
 		{
 			Type = GradeBookType.Standard;
 		}
+		// pitäs olla ok
 	}
 }
